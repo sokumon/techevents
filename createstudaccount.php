@@ -1,5 +1,6 @@
 <?php
 include "include/db.php";
+include "include/cors.php";
 $curl = curl_init();
 
 curl_setopt_array($curl, array(

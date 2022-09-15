@@ -1,5 +1,6 @@
 <?php
 include "include/db.php";
+include "include/cors.php";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $points=0;
     $content = file_get_contents("php://input");
@@ -11,8 +12,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $points = $row["points"];
         }
     }
+    $points = (int)$points + (int)$decoded->points;
     if($points >= 0){
-        $sql= "UPDATE users SET points = '$decoded->points' WHERE moodleid = '$decoded->moodleid'";
+        $sql= "UPDATE users SET points = $points WHERE moodleid = $decoded->moodleid ";
         $result = mysqli_query($connect,$sql);
         if($result){
             $response= array("status"=>"success");

@@ -1,5 +1,6 @@
 <?php
 include "include/db.php";
+include "include/cors.php";
 if(isset($_POST["Submit"])){
     $eid = $_POST['eid'];
     $ename = $_POST["ename"];
